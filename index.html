@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Resume Parser</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #eef2f7;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .container {
+            background: white;
+            padding: 35px;
+            width: 450px;
+            margin: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px #ccc;
+        }
+
+        h1 {
+            color: #263b64;
+        }
+
+        input, button {
+            margin: 15px;
+            padding: 12px;
+        }
+
+        button {
+            background: #2878d0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>AI Resume Parser</h1>
+        <p>Upload your resume and analyze your skills.</p>
+
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="resume" accept=".pdf" required>
+            <br>
+            <button type="submit">Analyze Resume</button>
+        </form>
+
+        {% if result %}
+<h2>Resume Analysis</h2>
+
+<div style="text-align:left; padding:15px;">
+    <p><b>Name:</b> {{ result.name }}</p>
+    <p><b>Email:</b> {{ result.email }}</p>
+    <p><b>Phone:</b> {{ result.phone }}</p>
+
+    <h3>Skills</h3>
+    {% for skill in result.skills %}
+        <span style="background:#dceaff;
+        padding:8px; margin:5px;
+        display:inline-block; border-radius:5px;">
+            {{ skill }}
+        </span>
+    {% endfor %}
+</div>
+{% endif %}
+    </div>
+</body>
+</html>
